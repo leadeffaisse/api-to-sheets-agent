@@ -1,0 +1,309 @@
+# =============================================================================
+# FICHIERS SENSIBLES ET CREDENTIALS (PRIORITÉ ABSOLUE)
+# =============================================================================
+
+# Variables d'environnement sensibles
+.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Credentials Google Cloud / Google Sheets
+google-credentials.json
+service-account-key.json
+gcp-credentials.json
+credentials.json
+
+# Clés API et tokens
+*.key
+*.pem
+api_keys.txt
+tokens.txt
+secrets.json
+
+# =============================================================================
+# PYTHON - ENVIRONNEMENTS ET DÉPENDANCES
+# =============================================================================
+
+# Environnements virtuels
+.env/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# Gestionnaires de paquets
+uv.lock
+Pipfile.lock
+poetry.lock
+pdm.lock
+.pdm.toml
+.pdm-python
+.pdm-build/
+__pypackages__/
+
+# =============================================================================
+# PYTHON - FICHIERS GÉNÉRÉS
+# =============================================================================
+
+# Bytecode et cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution et build
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# =============================================================================
+# OUTILS DE DÉVELOPPEMENT ET IDE
+# =============================================================================
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains (PyCharm, IntelliJ)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim/Neovim
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =============================================================================
+# TESTS ET QUALITÉ DU CODE
+# =============================================================================
+
+# Coverage et tests
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Type checkers
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Linters
+.ruff_cache/
+.bandit
+
+# =============================================================================
+# LANGCHAIN ET LANGSMITH
+# =============================================================================
+
+# LangSmith cache et données
+.langsmith/
+.langchain_cache/
+
+# LangGraph API
+.langgraph_api/
+
+# Traces et logs de debugging
+langchain_traces/
+langsmith_traces/
+
+# =============================================================================
+# DONNÉES ET EXPORTS SPÉCIFIQUES AU PROJET
+# =============================================================================
+
+# Google Sheets exports
+exports/
+temp_sheets/
+api_data_exports/
+
+# Fichiers de données temporaires
+*.csv.tmp
+*.xlsx.tmp
+data_cache/
+
+# Logs spécifiques à l'application
+api_logs/
+sheets_logs/
+
+# =============================================================================
+# SYSTÈMES D'EXPLOITATION
+# =============================================================================
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+# =============================================================================
+# LOGS ET FICHIERS TEMPORAIRES
+# =============================================================================
+
+# Logs généraux
+*.log
+logs/
+log/
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.bak
+*.backup
+*~
+
+# =============================================================================
+# NOTEBOOKS ET DOCUMENTATION
+# =============================================================================
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IPython
+profile_default/
+ipython_config.py
+
+# Sphinx documentation
+docs/_build/
+_build/
+
+# mkdocs
+/site
+
+# =============================================================================
+# FRAMEWORKS SPÉCIFIQUES (si utilisés)
+# =============================================================================
+
+# Django
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Flask
+instance/
+.webassets-cache
+
+# FastAPI
+.pytest_cache
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# =============================================================================
+# OUTILS DE BUILD ET CI/CD
+# =============================================================================
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Rope project settings
+.ropeproject
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# SageMath
+*.sage.py
+
+# Scrapy
+.scrapy
+
+# Cython debug symbols
+cython_debug/
+
+# =============================================================================
+# DIVERS
+# =============================================================================
+
+# Translations
+*.mo
+*.pot
+
+# Node.js (si frontend présent)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Images temporaires
+*.png.tmp
+*.jpg.tmp
+*.gif.tmp
