@@ -164,67 +164,6 @@ else:
     llm = None
 
 # =============================================================================
-# FONCTIONS UTILITAIRES POUR RÉCUPÉRER LES STATS DEPUIS LANGSMITH
-# =============================================================================
-
-def get_langsmith_token_stats(project_name: str = None, hours: int = 24) -> dict:
-    """Récupère les statistiques de tokens depuis LangSmith"""
-    if not langsmith_available:
-        return {"error": "LangSmith non disponible"}
-    
-    try:
-        project = project_name or LANGSMITH_CONFIG["LANGCHAIN_PROJECT"]
-        
-        # Récupérer les runs récents
-        runs = langsmith_client.list_runs(
-            project_name=project,
-            limit=100,
-            # Filtrer les dernières heures
-        )
-        
-        total_tokens = 0
-        total_cost = 0.0
-        run_count = 0
-        
-        for run in runs:
-            if hasattr(run, 'extra') and run.extra:
-                # LangSmith stocke les métriques dans run.extra
-                usage = run.extra.get('metadata', {}).get('ls_usage', {})
-                if usage:
-                    total_tokens += usage.get('total_tokens', 0)
-                    total_cost += usage.get('total_cost', 0.0)
-                    run_count += 1
-        
-        return {
-            "success": True,
-            "total_runs": run_count,
-            "total_tokens": total_tokens,
-            "total_cost_usd": total_cost,
-            "average_tokens_per_run": total_tokens / max(run_count, 1),
-            "project": project
-        }
-        
-    except Exception as e:
-        return {"error": f"Erreur récupération stats: {str(e)}"}
-
-def log_langsmith_token_summary():
-    """Affiche un résumé des tokens depuis LangSmith"""
-    stats = get_langsmith_token_stats()
-    
-    if "error" in stats:
-        log_debug(f"⚠️ {stats['error']}")
-        return
-    
-    print(f"\n💰 === STATISTIQUES LANGSMITH ===")
-    print(f"📊 Runs analysés: {stats['total_runs']}")
-    print(f"🔤 Tokens totaux: {stats['total_tokens']:,}")
-    print(f"💵 Coût total: ${stats['total_cost_usd']:.4f}")
-    print(f"📈 Moyenne par run: {stats['average_tokens_per_run']:.1f} tokens")
-    print(f"🎯 Projet: {stats['project']}")
-    print(f"🔗 Voir détails: https://smith.langchain.com/projects/{stats['project']}")
-    print(f"=================================\n")
-
-# =============================================================================
 # CONFIGURATION TECHNIQUE (CONSTANTES - RESTE DANS LE CODE)
 # =============================================================================
 
@@ -1002,11 +941,7 @@ def generate_response(state: AgentState) -> AgentState:
 """
     
     state["messages"].append(AIMessage(content=response))
-    
-    # Log optionnel des stats
-    if langsmith_available:
-        log_langsmith_token_summary()
-    
+       
     return state
 # =============================================================================
 # CONSTRUCTION DU GRAPHE (APRÈS DÉFINITION DES FONCTIONS)
