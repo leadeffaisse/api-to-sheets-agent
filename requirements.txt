@@ -1,39 +1,67 @@
-# Requirements.txt optimisé pour Python 3.13
+# Requirements.txt optimisé pour Python 3.13 avec support MCP
 # Versions les plus récentes compatibles
 
-# LangGraph et LangChain (versions récentes)
-langgraph>=0.2.0
+# === CORE LANGGRAPH (existant) ===
+langgraph>=0.2.6
 langchain-openai>=0.2.0
 langchain-core>=0.3.0
 langchain-community>=0.3.0
+python-dotenv>=1.0.1
 
-# LangSmith (version récente)
+# === LANGSMITH (existant) ===
 langsmith>=0.1.130
 
-# Google APIs
+# === GOOGLE APIS (existant) ===
 gspread>=6.1.0
 google-auth>=2.34.0
 google-auth-oauthlib>=1.2.0
 google-api-python-client>=2.150.0
 google-auth-httplib2>=0.2.0
 
-# Core dependencies avec versions fixes pour Python 3.13
+# === HTTP ET CORE (existant) ===
 requests>=2.32.0
-python-dotenv>=1.0.1
-
-# Uvicorn et FastAPI (versions récentes pour Python 3.13)
-uvicorn[standard]>=0.30.0
-fastapi>=0.115.0
-
-# Pandas (version récente)
-pandas>=2.2.0
-
-# Typing extensions (important pour Python 3.13)
 typing-extensions>=4.12.0
-
-# Pydantic (version récente)
 pydantic>=2.9.0
 
-# Autres utilitaires
+# === SERVEUR WEB (existant) ===
+uvicorn[standard]>=0.30.0
+fastapi>=0.115.0
 python-multipart>=0.0.10
 httpx>=0.27.0
+
+# === DATA PROCESSING (existant) ===
+pandas>=2.2.0
+
+# === MCP SUPPORT (NOUVEAU) ===
+# Core MCP
+mcp>=0.1.0
+
+# === MCP OUTILS AVANCÉS (OPTIONNEL) ===
+# Décommentez selon vos besoins :
+
+# Base de données
+# psycopg2-binary>=2.9.0    # PostgreSQL
+# sqlite3                   # Inclus avec Python
+
+# Web scraping  
+# selenium>=4.0.0
+# webdriver-manager>=4.0.0
+# beautifulsoup4>=4.12.0
+
+# Communication
+# slack-sdk>=3.0.0          # Slack
+# discord.py>=2.3.0         # Discord
+
+# Analyse avancée
+# numpy>=1.24.0
+# matplotlib>=3.7.0
+# plotly>=5.17.0
+
+# === DÉVELOPPEMENT ET TESTS ===
+# pytest>=8.3.5
+# pytest-asyncio>=0.21.0
+# mypy>=1.13.0
+# ruff>=0.8.2
+
+# === MCP DÉVELOPPEMENT ===
+# mcp-inspector>=0.1.0     # Outil d'inspection MCP (pour debug)

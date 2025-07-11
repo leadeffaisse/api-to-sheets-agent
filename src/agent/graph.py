@@ -9,6 +9,11 @@ from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
+# Permettre l'import depuis MCP
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
 from langgraph.graph import StateGraph, END, START
 from langchain_core.messages import HumanMessage, AIMessage, BaseMessage
 from langchain_openai import ChatOpenAI

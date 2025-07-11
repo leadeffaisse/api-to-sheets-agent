@@ -1,7 +1,8 @@
+# pyproject.toml mis à jour pour MCP
 [project]
 name = "agent"
 version = "0.0.1"
-description = "Starter template for making a new agent LangGraph."
+description = "Agent LangGraph avec support MCP pour API to Google Sheets"
 authors = [
     { name = "William Fu-Hinthorn", email = "13333726+hinthornw@users.noreply.github.com" },
 ]
@@ -9,27 +10,79 @@ readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.9"
 dependencies = [
+    # LangGraph dependencies (existantes)
     "langgraph>=0.2.6",
     "python-dotenv>=1.0.1",
+    
+    # Nouvelles dépendances pour votre agent API to Sheets
+    "langchain-openai>=0.2.0",
+    "langchain-core>=0.3.0", 
+    "langsmith>=0.1.130",
+    "requests>=2.32.0",
+    
+    # Google APIs pour Google Sheets
+    "gspread>=6.1.0",
+    "google-auth>=2.34.0",
+    "google-auth-oauthlib>=1.2.0",
+    "google-api-python-client>=2.150.0",
+    
+    # MCP support
+    "mcp>=0.1.0",
 ]
 
-
 [project.optional-dependencies]
-dev = ["mypy>=1.11.1", "ruff>=0.6.1"]
+dev = [
+    "mypy>=1.11.1", 
+    "ruff>=0.6.1",
+    "pytest>=8.3.5",
+    "pytest-asyncio>=0.21.0",  # Pour tester les fonctions async MCP
+]
+
+# Nouvelles dépendances optionnelles pour MCP avancé
+mcp-advanced = [
+    "psycopg2-binary>=2.9.0",  # Support PostgreSQL
+    "selenium>=4.0.0",         # Web scraping
+    "slack-sdk>=3.0.0",        # Notifications Slack
+]
+
+mcp-full = [
+    "agent[mcp-advanced]",
+    "pandas>=2.2.0",           # Analyse de données
+    "httpx>=0.27.0",          # Client HTTP async
+]
+
+[project.scripts]
+# Point d'entrée pour le serveur MCP
+agent-mcp = "agent.mcp.server:main"
+
+# Script de configuration automatique
+setup-claude = "agent.scripts.setup_claude:main"
 
 [build-system]
 requires = ["setuptools>=73.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["langgraph.templates.agent", "agent"]
+packages = [
+    "langgraph.templates.agent", 
+    "agent",
+    "agent.mcp",           # Nouveau package MCP
+    "agent.mcp.tools",     # Outils MCP
+    "agent.mcp.resources", # Ressources MCP
+    "agent.scripts"        # Scripts d'installation
+]
+
 [tool.setuptools.package-dir]
 "langgraph.templates.agent" = "src/agent"
 "agent" = "src/agent"
-
+"agent.mcp" = "src/agent/mcp"           # Structure MCP dans src/agent/
+"agent.mcp.tools" = "src/agent/mcp/tools"
+"agent.mcp.resources" = "src/agent/mcp/resources"
+"agent.scripts" = "scripts"
 
 [tool.setuptools.package-data]
 "*" = ["py.typed"]
+"agent" = ["*.json", "*.yaml", "*.yml"]  # Fichiers de config
 
 [tool.ruff]
 lint.select = [
@@ -50,8 +103,11 @@ lint.ignore = [
     "D417",
     "E501",
 ]
+
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["D", "UP"]
+"src/agent/mcp/*" = ["D401"]  # Relax pour les docstrings MCP
+
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
@@ -61,5 +117,12 @@ dev = [
     "langgraph-cli[inmem]>=0.2.8",
     "mypy>=1.13.0",
     "pytest>=8.3.5",
+    "pytest-asyncio>=0.21.0",
     "ruff>=0.8.2",
+]
+
+# Nouveau groupe pour le développement MCP
+mcp-dev = [
+    "mcp[dev]>=0.1.0",
+    "mcp-inspector>=0.1.0",    # Outil d'inspection MCP
 ]
